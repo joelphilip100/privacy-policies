@@ -106,12 +106,12 @@ there is nothing to request, recall or delete from us.
 | Permission | Why it is needed |
 |---|---|
 | `storage` | To save your speed rules and preferences on your device. |
-| `host_permissions: <all_urls>` | Videos appear on any site, so the speed controller must be able to run on any site you choose to use it on. It reads a page's hostname only to decide which of *your* rules applies. |
+| `host_permissions: http://*/*`, `https://*/*` | Videos appear on any site, so the speed controller must be able to run on any site you choose to use it on. It reads a page's hostname only to decide which of *your* rules applies. |
 | `scripting` | To activate the extension in tabs that were already open when you installed or updated it, so shortcuts work without reloading them. |
 | `webNavigation` | To ask each frame in the current tab whether it contains a video, so the popup can show accurate status. It is not used to observe or record navigation. |
 | `commands` | To register the keyboard shortcuts. |
 
-The `<all_urls>` permission is broad by necessity, not by ambition. It is what allows the
+The host permission is broad by necessity, not by ambition. It is what allows the
 extension to work on any video site. It is not used to read page content, collect data, or
 observe your browsing.
 
