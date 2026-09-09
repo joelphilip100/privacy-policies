@@ -1,141 +1,142 @@
 # Privacy Policy — TurboWatch
 
-**Last updated:** 30 August 2026
+**Last updated:** 9 September 2026
 
 ## The short version
 
-TurboWatch collects nothing, transmits nothing, and contacts no server. Everything it
-stores stays on your own computer.
+TurboWatch does not send your browsing activity, settings, or usage data to the developer or
+any third party. It has no analytics, advertising, account system, or remote service. It does
+process limited information locally so it can control HTML5 videos, and it stores the settings
+you choose in Chrome's local extension storage.
 
-That is the whole policy. The rest of this page is the detail behind it — what the extension
-touches while it runs, and why none of it is kept.
+## Information processed on your device
 
-## What TurboWatch stores
+TurboWatch locally processes the following information only to provide its visible features:
 
-TurboWatch saves your settings using Chrome's `chrome.storage.local` API, on your device only:
+- **The current tab's URL and hostname.** Chrome supplies the active tab's URL to the extension.
+  TurboWatch immediately reduces it to a lowercase hostname (for example,
+  `www.example.com`) so it can select a site or domain rule. The URL, path, query string, page
+  title, and visit time are not logged or stored. Only a hostname you deliberately add, pin, or
+  block becomes a saved setting.
+- **HTML5 video elements.** The content script finds `<video>` elements, including videos in
+  frames and open Shadow DOM, and reads or changes limited player state such as whether a video
+  is playing, playback rate, current playback position, and duration. It observes page changes
+  to find players added later. It does not copy or inspect the video or audio itself.
+- **Keyboard events.** TurboWatch checks key presses against its playback shortcuts. It also
+  checks whether focus is in an editable control so it can leave typing alone. It does not read
+  field values. Keystrokes are not logged, counted, stored, or transmitted.
 
-- whether TurboWatch is switched on or off
-- your global playback speed, and your forward/rewind seek steps
-- per-site and per-domain speed and seek rules you create
-- the list of sites where you have turned the extension off
-- your theme, language and on-screen badge preferences
+This processing happens inside your browser. TurboWatch does not transmit this information to
+the developer or to any external server.
 
-Every one of those is a setting you chose. TurboWatch never adds a site to that list on its
-own: a site appears only because you pinned a rule to it, typed it in, or blocked it. The list
-is not a history of where you have been — it has no page titles, no addresses beyond the site
-name, no visit times, and no record of any site you did not deliberately configure.
+## Settings stored on your device
 
-This data is written and read only by TurboWatch, only on your machine. It is never uploaded,
-backed up to a server, or synchronised to your other devices. Deleting the extension deletes it.
+TurboWatch uses `chrome.storage.local` to save:
 
-**Export and import.** Because nothing is synced, TurboWatch can save your settings to a JSON
-file so you can keep a copy or move them to another computer. That file is written by your
-browser to wherever you choose, and it contains your rules — including the list of sites you have
-turned the extension off on. Nothing sends it anywhere; where it goes afterwards is entirely up
-to you. Treat it as you would any other personal file.
+- whether the extension is on or off;
+- global playback speed and forward/rewind seek steps;
+- per-site and per-domain speed and seek rules you create;
+- hostnames you block;
+- theme, language, on-screen badge, and support-link preferences; and
+- an internal settings-format version used to migrate settings safely after updates.
 
-## What runs on the pages you visit
+These settings are not synced by TurboWatch, uploaded, sold, or shared. A saved hostname is
+configuration you deliberately created, not an automatically generated browsing history.
+Chrome normally removes an extension's local storage when the extension is uninstalled.
 
-To change the speed of a video on any site, TurboWatch has to be present on that site. There it
-looks for `<video>` players, sets the speed and position of the ones it finds, and draws a small
-badge when the speed changes. Nothing it does there is recorded, and nothing leaves your device.
+## Export and import
 
-**The site's name.** TurboWatch reads the hostname of your active tab (for example
-`www.example.com`) purely to match it against the rules you have created. This happens in memory,
-on your device, and the result is not stored beyond the rules you explicitly set up yourself.
-The full address, its path, its query string and anything in it are never read, never sent and
-never stored.
+You can export your settings to a JSON file and later merge or restore that file. The backup can
+contain site/domain rules and blocked hostnames. Your browser saves it to a location you choose;
+TurboWatch does not upload it. Anyone who can access the file may be able to see those settings,
+so store and share it as you would any other private file. Deleting the exported file is your
+responsibility.
 
-**Keyboard input.** TurboWatch listens for key presses on the pages it runs on, because a
-keyboard shortcut is how you change speed or skip. Each press is compared against your own
-shortcuts and then discarded in the same instant. It is never recorded, never counted, never
-written to storage and never transmitted. Keys that are not one of your shortcuts are ignored
-and passed straight on to the page. When your cursor is in a text box, TurboWatch checks only
-the *kind* of element you are typing into — so that it can stand aside and let you type — and
-never the words in it.
+## Links and third parties
 
-## Links you choose to open
+TurboWatch makes no automatic requests to third-party servers. Its fonts and program code are
+bundled with the extension. It fetches language files only from its own installed package.
 
-The popup footer has two links that only ever open when you click them — TurboWatch never loads,
-pings, or embeds anything from either address on its own, and no settings or page data are sent
-along when they open:
+The popup contains links that act only when you click them:
 
-- **Configure** opens your browser's own extension-shortcuts page, to rebind the keyboard
-  shortcuts — `chrome://extensions/shortcuts` on Chrome, and the equivalent address on other
-  Chromium browsers. If the browser refuses to open it, the popup shows you the address
-  instead of navigating anywhere.
-- **Support developer** opens `buymeacoffee.com/joelphilip5` in a new tab. Buy Me a Coffee is a
-  third-party site with its own privacy practices, which this policy does not cover. This link is
-  optional: turn off **Support developer** in the Site rules tab to remove it from the footer.
+- **Configure** attempts to open your Chromium browser's extension-shortcuts page.
+- **Support developer** opens `https://buymeacoffee.com/joelphilip5`. You can hide this link in
+  TurboWatch's settings. Buy Me a Coffee receives the ordinary information your browser sends
+  when you visit a website and applies its own privacy policy. TurboWatch does not attach your
+  settings or browsing data to the link.
+
+Once you leave TurboWatch, the destination site or browser page is outside this policy.
 
 ## What TurboWatch does not do
 
-- **No network requests made by the extension itself.** Not for analytics, not for fonts, not
-  for update checks, not for anything automatic. Its typefaces are bundled inside the extension
-  package specifically so that opening the popup cannot reveal to anyone that you opened it. The
-  only requests that ever happen are the two links above, and only if you click one yourself.
-- **No tracking or analytics.** No telemetry, no usage statistics, no crash reporting, no
-  advertising or fingerprinting identifiers.
-- **No browsing history collection.** TurboWatch never records, stores, or transmits the pages
-  you visit.
-- **No keystroke logging.** Key presses are matched against your shortcuts and discarded. None
-  is ever stored or sent.
-- **No page content collection.** No text, images, audio, video, links, form fields, passwords,
-  cookies or site storage are read or copied.
-- **No account, no sign-in, no identifiers.** It never asks who you are.
-- **No data sharing or selling.** There is no third party to share with; no data leaves your
-  device.
-- **No advertising, and no use of your data to profile you** — for creditworthiness, lending, or
-  anything else. There is no data to use.
-- **No remote code.** All code is contained in the published package. Nothing is downloaded or
-  evaluated at runtime.
+- No telemetry, analytics, crash reporting, advertising, or fingerprinting.
+- No developer-operated server, account, sign-in, or cross-device sync.
+- No sale, rental, or sharing of user data.
+- No browsing-history log and no storage of page paths, queries, titles, or visit times.
+- No collection of page text, images, media, links, form contents, passwords, cookies, or site
+  storage.
+- No remote code. All executable code is included in the published extension package.
 
-## Keeping and deleting your data
-
-Your settings stay on your device until you remove them. There is no copy anywhere else, so
-there is nothing to request, recall or delete from us.
-
-- Remove a single rule or blocked site from the popup, and it is gone.
-- Uninstalling TurboWatch removes everything it stored, including every rule and the blocklist.
-  Chrome deletes the extension's local storage with the extension.
-- A settings file you exported yourself is an ordinary file on your computer; delete it as you
-  would any other.
-
-## Permissions, and why each one exists
+## Permissions
 
 | Permission | Why it is needed |
 |---|---|
-| `storage` | To save your speed rules and preferences on your device. |
-| `host_permissions: http://*/*`, `https://*/*` | Videos appear on any site, so the speed controller must be able to run on any site you choose to use it on. It reads a page's hostname only to decide which of *your* rules applies. |
-| `scripting` | To activate the extension in tabs that were already open when you installed or updated it, so shortcuts work without reloading them. |
-| `webNavigation` | To ask each frame in the current tab whether it contains a video, so the popup can show accurate status. It is not used to observe or record navigation. |
-| `commands` | To register the keyboard shortcuts. |
+| `storage` | Saves the settings listed above in local extension storage. |
+| Host access to `http://*/*` and `https://*/*` | Lets the video controller work on HTML5 video sites and in embedded frames. It is also what allows Chrome to provide a tab URL, which is reduced to a hostname for rule matching. |
+| `scripting` | Activates TurboWatch in eligible tabs that were already open when it was installed or updated. |
+| `webNavigation` | Lists frames in the active tab so the popup can ask each frame whether it contains a video. TurboWatch does not subscribe to, store, or transmit navigation events. |
+| `commands` | Registers user-configurable playback-speed shortcuts. |
 
-The host permission is broad by necessity, not by ambition. It is what allows the
-extension to work on any video site. It is not used to read page content, collect data, or
-observe your browsing.
+TurboWatch does not request the `tabs` permission. Broad HTTP/HTTPS host access is necessary for
+its disclosed purpose of controlling videos on sites chosen by the user; it is not used for
+profiling or monitoring browsing.
 
-Where a narrower grant existed, it was taken. The `tabs` permission is deliberately **not**
-requested, and TurboWatch asks for no others than the five above.
+## Retention and your choices
 
-## Children's privacy
+Settings remain in `chrome.storage.local` until you change/reset them or uninstall TurboWatch.
+You can remove individual rules and blocked hosts, reset all settings from the Backup tab, or
+uninstall the extension. The developer has no server-side copy and therefore cannot retrieve,
+correct, export, or delete settings on your behalf. Exported backup files remain until you delete
+them yourself.
 
-TurboWatch collects no data from anyone, of any age.
+## Security and incidents
 
-## Your rights
+TurboWatch reduces risk by keeping settings and processing on-device, shipping no remote code,
+and making no automatic external network requests. No software or storage mechanism can be
+guaranteed completely secure. If a vulnerability or incident materially changes the risks or
+data practices described here, the developer will investigate, take reasonable remediation
+steps, update this policy and the Chrome Web Store disclosures as appropriate, and provide notice
+through an available product, store-listing, or project channel when notice is warranted.
 
-Data-protection laws such as the GDPR and the CCPA give you rights to see, correct, export or
-delete the personal data a service holds about you. TurboWatch holds none, and no personal data
-is collected, processed, sold or shared, so there is no request to make and no one to make it to.
-Your settings are already in your hands: they are on your own device, visible in the popup,
-exportable to a file, and deleted when you delete them.
+Do not include passwords, payment details, backup contents, or other sensitive information in a
+public support report.
 
-## Changes to this policy
+## Children
 
-If this policy ever changes, the updated version will be published here and the date at the top
-will be updated. Because the extension collects no data, any change is likely to be a
-clarification rather than a change in practice.
+TurboWatch is not directed to children and does not knowingly transmit personal information from
+users of any age to the developer.
 
-## Contact & Support
+## Future features, paid plans, and policy changes
 
-If you have questions, feedback, or need support regarding this privacy policy or the extension, please use the **Support** tab on the TurboWatch Chrome Web Store listing.
+This policy describes the version available on its last-updated date; it does not grant permission
+for future data collection. If a future release introduces accounts, cloud sync, analytics, paid
+plans, licensing, or another practice that changes how information is handled, TurboWatch will
+update this policy and the Chrome Web Store disclosures before or when that change takes effect
+and will provide any notice or consent required by law and store policy.
+
+TurboWatch does not currently sell a paid plan or process payments. If payments are introduced,
+the checkout provider—not TurboWatch—should process card details under its own privacy policy;
+the applicable seller, price, recurring terms, cancellation, and refund terms will be disclosed
+before purchase. This paragraph does not announce or promise a paid offering.
+
+## Chrome Web Store Limited Use
+
+TurboWatch's use of information received from Chrome APIs complies with the Chrome Web Store User
+Data Policy, including the Limited Use requirements. Information is used only to provide and
+maintain the extension's user-facing video-control features and is not transferred for advertising,
+profiling, creditworthiness, or lending purposes.
+
+## Contact and support
+
+For privacy questions or support, use the **Support** tab on TurboWatch's Chrome Web Store listing
+or the project's GitHub issue tracker. Avoid posting sensitive information publicly.
