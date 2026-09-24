@@ -1,6 +1,6 @@
 # Privacy Policy — TurboWatch
 
-**Last updated:** 9 September 2026
+**Last updated:** 23 September 2026
 
 ## The short version
 
@@ -19,12 +19,14 @@ TurboWatch locally processes the following information only to provide its visib
   title, and visit time are not logged or stored. Only a hostname you deliberately add, pin, or
   block becomes a saved setting.
 - **HTML5 video elements.** The content script finds `<video>` elements, including videos in
-  frames and open Shadow DOM, and reads or changes limited player state such as whether a video
-  is playing, playback rate, current playback position, and duration. It observes page changes
+  frames and in Shadow DOM web components (open or closed; closed ones are reached through
+  Chrome's `chrome.dom.openOrClosedShadowRoot`, which needs no additional permission), and reads
+  or changes limited player state such as whether a video is playing, playback rate, current
+  playback position, and duration. It observes page changes
   to find players added later. It does not copy or inspect the video or audio itself.
 - **Keyboard events.** TurboWatch checks key presses against its playback shortcuts. It also
-  checks whether focus is in an editable control so it can leave typing alone. It does not read
-  field values. Keystrokes are not logged, counted, stored, or transmitted.
+  checks whether focus is in an editable control, including one inside a web component, so it
+  can leave typing alone. It reads only the control's type and editability, never its value. Keystrokes are not logged, counted, stored, or transmitted.
 
 This processing happens inside your browser. TurboWatch does not transmit this information to
 the developer or to any external server.
@@ -94,8 +96,8 @@ profiling or monitoring browsing.
 ## Retention and your choices
 
 Settings remain in `chrome.storage.local` until you change/reset them or uninstall TurboWatch.
-You can remove individual rules and blocked hosts, reset all settings from the Backup tab, or
-uninstall the extension. The developer has no server-side copy and therefore cannot retrieve,
+You can remove individual rules and blocked hosts, reset all settings with **Reset everything**
+on the popup's Settings tab, or uninstall the extension. The developer has no server-side copy and therefore cannot retrieve,
 correct, export, or delete settings on your behalf. Exported backup files remain until you delete
 them yourself.
 
