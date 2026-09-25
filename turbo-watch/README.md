@@ -1,6 +1,6 @@
 # Privacy Policy — TurboWatch
 
-**Last updated:** 23 September 2026
+**Last updated:** 25 September 2026
 
 ## The short version
 
@@ -13,9 +13,9 @@ you choose in Chrome's local extension storage.
 
 TurboWatch locally processes the following information only to provide its visible features:
 
-- **The current tab's URL and hostname.** Chrome supplies the active tab's URL to the extension.
+- **Open tabs' URLs and hostnames.** Chrome supplies each open web tab's URL to the extension.
   TurboWatch immediately reduces it to a lowercase hostname (for example,
-  `www.example.com`) so it can select a site or domain rule. The URL, path, query string, page
+  `www.example.com`) so each tab gets its site or domain rule. The URL, path, query string, page
   title, and visit time are not logged or stored. Only a hostname you deliberately add, pin, or
   block becomes a saved setting.
 - **HTML5 video elements.** The content script finds `<video>` elements, including videos in
@@ -140,5 +140,5 @@ profiling, creditworthiness, or lending purposes.
 
 ## Contact and support
 
-For privacy questions or support, use the **Support** tab on TurboWatch's Chrome Web Store listing
-or the project's GitHub issue tracker. Avoid posting sensitive information publicly.
+For privacy questions or support, email [support@joelphilip.com](mailto:support@joelphilip.com)
+or use the **Support** tab on TurboWatch's Chrome Web Store listing. Avoid posting sensitive information publicly.
